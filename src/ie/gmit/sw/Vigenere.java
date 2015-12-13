@@ -93,19 +93,21 @@ public class Vigenere { //Blaise de Vigenere is (incorrectly) accredited with in
 	 */
 	public String doCypher(char[] text, boolean encrypt) {
 		StringBuffer buffer = new StringBuffer();
-		for (int i = 0; i < text.length; i++) {
-			if (text[i] < 'A' || text[i] > 'Z') break;
-			
-			int j = 0;
-			if (i < key.length) j = i;
+		int j = 0;
 
+		for (int i = 0; i < text.length; i++) {
+
+			if (text[i] < 'A' || text[i] > 'Z') continue;
+
+			if (j >= key.length) j = 0; //or   j = j%key.length if that's your thing
+	
 			if(encrypt){
 				buffer.append(getEncryptedCharacter(key[j], text[i]));
-				//System.out.println(get)
 			}else{
 				buffer.append(getDecryptedCharacter(key[j], text[i]));
 			}
 			j++;
+	
 		}
 		return buffer.toString();
 	}

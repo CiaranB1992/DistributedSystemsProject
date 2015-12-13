@@ -28,7 +28,7 @@ public class KeyEnumerator {
 		char[] key = null;
 		
 		int counter = 0;
-		for (int j = 4; j <= maxKeyLength; j++){
+		for (int j = 3; j <= maxKeyLength; j++){
 			key = new char[j];
 			
 			j = 0;
@@ -42,13 +42,13 @@ public class KeyEnumerator {
 				if(score > bestScore){
 					bestScore = score;
 					bestKey = new String(key);
-					System.out.println("Got best key " + bestKey);
+					//System.out.println("Got best key " + bestKey);
 				}
 				
 			}while ((key = getNextKey(key)) != null);
 		}
 		System.out.println("Enumerated " + counter + " keys.");
-		
+	
 		String result = new Vigenere(bestKey).doCypher(cypherText, false);
 		return result;
 	}
